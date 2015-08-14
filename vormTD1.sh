@@ -15,8 +15,8 @@ azure storage blob copy start -a vormetric1td -k "1r8kOko8Xrd81ej3WJyIGZu+7YQAx8
 
 #grupa="orbiteratestdrive${HOSTNAME#*-}"
 grupa=`echo ${HOSTNAME} | cut -d - -f2`
-
+grupa_new="orbiteratestdrive$grupa"
 #azure vm create -g $grupa -n VormmetricMain -l westeurope -y linux --vnet-name "${HOSTNAME,,}-net" -d "https://vormetric1td.blob.core.windows.net/vhds/vormetric-${HOSTNAME,,}-image-v2.vhd" -o vormetric1td -R vhds -f vormMainNic --vnet-subnet-name "Subnet-2"
-azure vm create -g $grupa -n VormmetricMain -l westeurope -y linux --vnet-name "$new_hostname-net" -d "https://vormetric1td.blob.core.windows.net/vhds/vormetric-${new_hostname}-image-v2.vhd" -o vormetric1td -R vhds -f vormMainNic --vnet-subnet-name "Subnet-2"
+azure vm create -g $grupa_new -n VormmetricMain -l westeurope -y linux --vnet-name "$new_hostname-net" -d "https://vormetric1td.blob.core.windows.net/vhds/vormetric-${new_hostname}-image-v2.vhd" -o vormetric1td -R vhds -f vormMainNic --vnet-subnet-name "Subnet-2"
 
 echo "stop." >> /custom.log
