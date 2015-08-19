@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en" >
-
 <head>
 	<script type="text/javascript">
 window.TSMark = function(mark_label) {
@@ -27,8 +26,7 @@ window.logLoad = function(k) {
 		t: (ms-window.load_start_ms)/1000
 	})
 }
-if(self!==top)window.document.write("\u003Cstyle>body * {display:none !important;}\u003C\/style>\u003Ca href=\"#\" onclick="+
-"\"top.location.href=window.location.href\" style=\"display:block !important;padding:10px\">Go to Slack.com\u003C\/a>");
+if(self!==top)window.document.write("\u003Cstyle>body * {display:none !important;}\u003C\/style>\u003Ca href=\"#\" onclick="+"\"top.location.href=window.location.href\" style=\"display:block !important;padding:10px\">Go to Slack.com\u003C\/a>");
 </script>
 
 
