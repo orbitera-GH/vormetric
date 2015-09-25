@@ -14,12 +14,13 @@ sudo restart ssh
 HOSTNAME=`hostname`
 new_hostname=`echo ${HOSTNAME} | tr '[:upper:]' '[:lower:]'`
 ID=`echo ${new_hostname} | cut -d - -f2`
+ID3=$(echo ${ID} | awk '{ print substr($0, 3, 3); }')
 
 root_passwd="MySec${ID}"
 goodguy_passwd="${ID}gdg"
 badguy_passwd="bdd${ID}"
-cliadmin_passwd="DsMp@s${ID:2:3}"
-webadmin_passwd="WcAp#s${ID:2:3}"
+cliadmin_passwd="DsMp@s${ID3}"
+webadmin_passwd="WcAp#s${ID3}"
 
 echo "takie tam: root pass: ${root_passwd}" >> /tmp/custom.log
 echo "takie tam: good-guy pass: ${goodguy_passwd}" >> /tmp/custom.log
