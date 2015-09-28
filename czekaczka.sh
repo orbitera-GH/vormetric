@@ -59,7 +59,7 @@ done
 echo "Wait a moment to settle down..."
 sleep 10
 
-expect - <<EOF
+while ! expect - <<EOF
 set timeout 300
 
 spawn ssh ${DEFAULT_CLIADMIN}@${DSM_HOST}
@@ -68,6 +68,16 @@ expect "yes/no" {
     send "yes\n"
     expect "*?assword" { send "${DEFAULT_CLIADMIN_PASS}\n" }
     } "*?assword" { send "${DEFAULT_CLIADMIN_PASS}\n" }
+
+expect {
+    "CLI daemon is not running." {
+        exit 1
+    }
+    
+    "Enter new password  : " {
+        send "${CLIADMIN_PASS}\n"
+    }
+}
 
 expect "Enter new password  : "
 send "${CLIADMIN_PASS}\n"
@@ -94,7 +104,12 @@ send "${DSM_CA_C}\n"
 sleep 1
 expect "system\\\$ "
 send "exit\n"
+exit 0
 EOF
+do
+    echo "Something went wrong with expect, retrying..."
+    sleep 2
+done
 
 echo "Wait for DSM web server..."
 
