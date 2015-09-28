@@ -79,8 +79,6 @@ expect {
     }
 }
 
-expect "Enter new password  : "
-send "${CLIADMIN_PASS}\n"
 expect "Enter password again: "
 send "${CLIADMIN_PASS}\n"
 expect "vormetric\\\$ "
