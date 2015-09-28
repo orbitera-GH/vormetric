@@ -59,7 +59,7 @@ done
 echo "Wait a moment to settle down..."
 sleep 10
 
-while ! expect -d - <<EOF
+while ! expect - <<EOF
 set timeout 300
 
 spawn ssh ${DEFAULT_CLIADMIN}@${DSM_HOST}
@@ -76,11 +76,17 @@ expect {
     
     "Enter new password  : " {
         send "${CLIADMIN_PASS}\n"
+        exp_continue
+    }
+    "Enter password again: " {
+        send "${CLIADMIN_PASS}\n"
+    }
+    "Permission denied, please try again.*password: " {
+        sleep 5
+        send "${CLIADMIN_PASS}\n"
     }
 }
 
-expect "Enter password again: "
-send "${CLIADMIN_PASS}\n"
 expect "vormetric\\\$ "
 send "system\n"
 expect "system\\\$ "
@@ -106,7 +112,7 @@ exit 0
 EOF
 do
     echo "Something went wrong with expect, retrying..."
-    sleep 2
+    sleep 5
 done
 
 echo "Wait for DSM web server..."
