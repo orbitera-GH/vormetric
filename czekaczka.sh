@@ -6,7 +6,7 @@ exec 1>>/tmp/custom.log
 # helper variables
 HOSTNAME=$(hostname | tr '[:upper:]' '[:lower:]')
 ID=$(echo ${HOSTNAME} | cut -d - -f2)
-ID3=$(echo ${ID} | awk '{ print substr($0, 3, 3); }')
+ID3=$(echo ${ID} | awk -Fi '{print $1 % 10 "i" $2 % 10}')
 
 . /opt/vormetric/cloudtools/defaults
 
