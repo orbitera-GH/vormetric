@@ -57,7 +57,7 @@ while ! nc -z ${DSM_HOST} 22; do
 done
 
 echo "Wait a moment to settle down..."
-sleep 5
+sleep 10
 
 expect - <<EOF
 set timeout 300
