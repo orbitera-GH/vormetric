@@ -59,7 +59,7 @@ done
 echo "Wait a moment to settle down..."
 sleep 10
 
-while ! expect - <<EOF
+while ! expect -d - <<EOF
 set timeout 300
 
 spawn ssh ${DEFAULT_CLIADMIN}@${DSM_HOST}
